@@ -1,35 +1,28 @@
-/* Basic Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body, html { height: 100%; font-family: Arial, sans-serif; overflow-x: hidden; transition: background 0.5s, color 0.5s; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body, html { height:100%; font-family: Arial, sans-serif; overflow-x:hidden; transition: background 0.5s, color 0.5s; }
 
-/* Dark / Light mode */
-body.light { color: #000; background: #fff; }
-body.dark { color: #fff; background: #111; }
+body.light { color:#000; background:#fff; }
+body.dark { color:#fff; background:#111; }
 
 /* Header */
-header {
-  position: relative;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(0,0,0,0.3);
-  z-index: 2;
-}
-nav a { margin-right: 15px; text-decoration: none; color: inherit; font-weight: bold; }
-#mode-toggle { font-size: 20px; background: none; border: none; cursor: pointer; color: inherit; }
+header { position: relative; padding: 10px 20px; display:flex; align-items:center; z-index:2; }
+header h1 { margin-left: 100px; flex:1; }
+nav a { margin-left: 15px; text-decoration:none; color:inherit; font-weight:bold; }
+
+/* Dark/Light toggle */
+#mode-toggle { position: absolute; top:10px; left:10px; font-size:24px; background:none; border:none; cursor:pointer; color:inherit; }
 
 /* Main */
-main { padding: 20px; z-index:2; position: relative; }
+main { padding: 20px; position: relative; z-index:2; }
 
 /* E-books */
-#ebooks-list button { padding: 5px 10px; cursor: pointer; }
+#ebooks-list button { padding:5px 10px; cursor:pointer; }
 
-/* Subscribe Form */
-#subscribe-form input, #subscribe-form button { display: block; margin: 5px 0; padding: 5px; }
+/* Subscribe form */
+#subscribe-form input, #subscribe-form button { display:block; margin:5px 0; padding:5px; }
 
 /* Footer */
-footer { text-align: center; margin-top: 50px; padding: 20px; background: rgba(0,0,0,0.3); z-index: 2; position: relative; }
+footer { text-align:center; margin-top:50px; padding:20px; background: rgba(0,0,0,0.2); position:relative; z-index:2; }
 
-/* Canvas */
-canvas#bg-canvas { position: fixed; top:0; left:0; z-index:0; width: 100%; height: 100%; }
+/* Canvas full screen */
+canvas#bg-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; }
