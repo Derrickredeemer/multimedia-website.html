@@ -4,25 +4,64 @@ body, html { height:100%; font-family: Arial, sans-serif; overflow-x:hidden; tra
 body.light { color:#000; background:#fff; }
 body.dark { color:#fff; background:#111; }
 
-/* Header */
-header { position: relative; padding: 10px 20px; display:flex; align-items:center; z-index:2; }
-header h1 { margin-left: 100px; flex:1; }
-nav a { margin-left: 15px; text-decoration:none; color:inherit; font-weight:bold; }
+/* Header / Nav */
+header {
+  position: relative;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  z-index: 3; /* above welcome text */
+}
+
+nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
 
 /* Dark/Light toggle */
-#mode-toggle { position: absolute; top:10px; left:10px; font-size:24px; background:none; border:none; cursor:pointer; color:inherit; }
+#mode-toggle {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  z-index: 4; /* above everything */
+}
 
-/* Main */
+/* Movable Welcome Text */
+#welcome-msg {
+  position: absolute;
+  top: 60px; /* below nav */
+  left: 0;
+  font-size: 28px;
+  z-index: 2; /* below nav but above canvas */
+  pointer-events: none; /* allow clicks on nav */
+}
+
+/* Main content */
 main { padding: 20px; position: relative; z-index:2; }
 
 /* E-books */
 #ebooks-list button { padding:5px 10px; cursor:pointer; }
 
-/* Subscribe form */
+/* Subscribe Form */
 #subscribe-form input, #subscribe-form button { display:block; margin:5px 0; padding:5px; }
 
 /* Footer */
 footer { text-align:center; margin-top:50px; padding:20px; background: rgba(0,0,0,0.2); position:relative; z-index:2; }
 
 /* Canvas */
-canvas#bg-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+canvas#bg-canvas { 
+  position:fixed; 
+  top:0; 
+  left:0; 
+  width:100%; 
+  height:100%; 
+  z-index:0; 
+  pointer-events:none; /* allow clicks to pass through */ 
+}
