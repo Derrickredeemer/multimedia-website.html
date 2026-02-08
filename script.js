@@ -5,6 +5,7 @@ const BACKEND_URL = "https://YOUR-BACKEND-URL.replit.app";
 const welcome = document.getElementById("welcome-msg");
 let pos=0, dir=1;
 
+// Greeting based on visitor's time
 function updateGreeting(){
   const hour = new Date().getHours();
   let greet = "Welcome!";
@@ -23,17 +24,17 @@ function moveText(){
 }
 moveText();
 
-/* ===== Flowing Blue & Green Background ===== */
+/* ===== Flowing Blue & Green Water Background ===== */
 const canvas = document.getElementById("bg-canvas");
 const ctx = canvas.getContext("2d");
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
-let gradientOffset = 0;
+let gradientOffset=0;
 
 function animateBG(){
   gradientOffset+=0.5;
-  const grd = ctx.createLinearGradient(0,gradientOffset,canvas.width,canvas.height+gradientOffset);
+  const grd = ctx.createLinearGradient(0, gradientOffset, canvas.width, canvas.height+gradientOffset);
   grd.addColorStop(0,'#00f'); // Blue
   grd.addColorStop(0.5,'#0f0'); // Green
   grd.addColorStop(1,'#00f'); // Blue
@@ -43,7 +44,7 @@ function animateBG(){
 }
 animateBG();
 
-/* ===== Dark/Light Mode ===== */
+/* ===== Dark/Light Mode Toggle ===== */
 const modeBtn = document.getElementById("mode-toggle");
 modeBtn.onclick = ()=>{
   document.body.classList.toggle("dark");
