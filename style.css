@@ -6,9 +6,31 @@
 }
 
 body {
-  background: #f4f4f4;
-  color: #222;
-  transition: 0.3s;
+  background: #0d1117;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 🔥 Animated Blue-Green Gradient Background */
+#hero {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  background: linear-gradient(-45deg, #0044ff, #00c853, #0088ff, #00e676);
+  background-size: 400% 400%;
+  animation: gradientAnimation 12s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
+  100% { background-position: 0% 50%; }
 }
 
 header {
@@ -16,29 +38,25 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 30px;
-  background: #111;
-  color: white;
+  background: rgba(0,0,0,0.85);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
+header h1 {
+  font-size: 20px;
+}
+
 nav a {
   color: white;
-  margin-left: 20px;
+  margin-left: 15px;
   text-decoration: none;
+  font-weight: bold;
 }
 
 nav a:hover {
-  text-decoration: underline;
-}
-
-#theme-toggle {
-  background: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px;
+  color: #00e676;
 }
 
 section {
@@ -46,69 +64,44 @@ section {
   text-align: center;
 }
 
-#hero {
-  position: relative;
-  height: 50vh;
-  background: linear-gradient(to right, #4e73df, #1cc88a);
-  color: white;
-  overflow: hidden;
-}
-
 #welcome-msg {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 0;
+  transform: translateY(-50%);
   font-size: 28px;
   font-weight: bold;
   white-space: nowrap;
 }
 
 .ebook-card {
-  background: white;
+  background: #1e1e1e;
   padding: 30px;
   margin: 20px auto;
   max-width: 400px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
 }
 
 .btn {
   display: inline-block;
-  padding: 10px 20px;
-  background: #4e73df;
+  padding: 12px 25px;
+  background: #00c853;
   color: white;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 6px;
   margin-top: 15px;
+  font-weight: bold;
 }
 
 .btn:hover {
-  background: #2e59d9;
-}
-
-#qrcode {
-  margin-top: 20px;
+  background: #00e676;
 }
 
 footer {
+  background: black;
   padding: 20px;
-  background: #111;
-  color: white;
-}
-
-/* 🌙 Dark Mode */
-.dark-mode {
-  background: #121212;
-  color: white;
-}
-
-.dark-mode header,
-.dark-mode footer {
-  background: #000;
-}
-
-.dark-mode .ebook-card {
-  background: #1e1e1e;
+  text-align: center;
 }
 
 /* 📱 Mobile Responsive */
@@ -120,15 +113,19 @@ footer {
   }
 
   nav {
-    margin: 10px 0;
+    margin-top: 10px;
+  }
+
+  nav a {
+    display: block;
+    margin: 8px 0;
   }
 
   #welcome-msg {
     font-size: 18px;
-    top: 45%;
   }
 
   #hero {
-    height: 40vh;
+    height: 45vh;
   }
 }
