@@ -1,74 +1,47 @@
-/* ===== Backend URL for subscription ===== */
-const BACKEND_URL = "https://YOUR-BACKEND-URL.replit.app";
-
-/* ===== Movable Welcome Text & Greeting ===== */
 const welcome = document.getElementById("welcome-msg");
-let pos=0, dir=1;
 
-// Greeting based on visitor's time
+// Dynamic Greeting
 function updateGreeting(){
   const hour = new Date().getHours();
   let greet = "Welcome!";
-  if(hour<12) greet="Good morning!";
-  else if(hour<18) greet="Good afternoon!";
-  else greet="Good evening!";
+  if(hour < 12) greet = "Good morning!";
+  else if(hour < 18) greet = "Good afternoon!";
+  else greet = "Good evening!";
   welcome.textContent = `${greet} Welcome to A.D Derrick Redeemer’s Portfolio`;
 }
 updateGreeting();
 
+// Smooth Moving Text (Works on Mobile)
+let position = 0;
+let direction = 1;
+let speed = 1;
+
 function moveText(){
-  pos += dir * 1.5;
-  if(pos>window.innerWidth-400 || pos<0) dir*=-1;
-  welcome.style.transform = `translateX(${pos}px)`;
-  requestAnimationFrame(moveText);
-}
-moveText();
+  const screenWidth = window.innerWidth;
+  const textWidth = welcome.offsetWidth;
 
-/* ===== Flowing Blue & Green Water Background ===== */
-const canvas = document.getElementById("bg-canvas");
-const ctx = canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+  position += direction * speed;
 
-let gradientOffset=0;
-
-function animateBG(){
-  gradientOffset+=0.5;
-  const grd = ctx.createLinearGradient(0, gradientOffset, canvas.width, canvas.height+gradientOffset);
-  grd.addColorStop(0,'#00f'); // Blue
-  grd.addColorStop(0.5,'#0f0'); // Green
-  grd.addColorStop(1,'#00f'); // Blue
-  ctx.fillStyle=grd;
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  requestAnimationFrame(animateBG);
-}
-animateBG();
-
-/* ===== Dark/Light Mode Toggle ===== */
-const modeBtn = document.getElementById("mode-toggle");
-modeBtn.onclick = ()=>{
-  document.body.classList.toggle("dark");
-  document.body.classList.toggle("light");
-  modeBtn.textContent = document.body.classList.contains("dark")?"☀️":"🌙";
-};
-
-/* ===== Subscribe Form ===== */
-document.getElementById("subscribe-form").onsubmit = e=>{
-  e.preventDefault();
-  const email = document.getElementById("sub-email").value;
-  const phone = document.getElementById("sub-phone").value;
-  const viaEmail = document.getElementById("choose-email").checked;
-  const viaSMS = document.getElementById("choose-sms").checked;
-
-  if(!email && !phone){
-    document.getElementById("subscribe-message").textContent="Enter email or phone.";
-    return;
+  if(position + textWidth >= screenWidth || position <= 0){
+    direction *= -1;
   }
 
-  fetch(`${BACKEND_URL}/subscribe`,{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({email,phone,viaEmail,viaSMS})
-  }).then(()=>document.getElementById("subscribe-message").textContent="Subscribed!")
-    .catch(()=>document.getElementById("subscribe-message").textContent="Subscription failed.");
-};
+  welcome.style.left = position + "px";
+
+  requestAnimationFrame(moveText);
+}
+
+moveText();
+
+// Dark Mode Toggle
+document.getElementById("theme-toggle").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+});
+
+// Generate QR Code (Frontend Only)
+new QRCode(document.getElementById("qrcode"), {
+  text: window.location.href,
+  width: 150,
+  height: 150,
+  correctLevel: QRCode.CorrectLevel.H
+});
